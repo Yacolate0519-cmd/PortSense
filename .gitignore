@@ -15,3 +15,6 @@ build/
 # It is committed for convenience (clone & open), but project.yml is the
 # source of truth. Uncomment the next line if you prefer to regenerate it.
 # PortSense.xcodeproj/
+
+# Release artifacts
+dist/

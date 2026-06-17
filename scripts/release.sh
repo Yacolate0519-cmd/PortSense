@@ -42,8 +42,16 @@ xcodebuild -project PortSense.xcodeproj -scheme "$SCHEME" -configuration Release
 
 APP="$DERIVED/Build/Products/Release/$APP_NAME.app"
 
+# `xcodebuild build` injects com.apple.security.get-task-allow (a debug
+# entitlement) which notarization rejects. Re-sign cleanly with hardened
+# runtime and no entitlements to strip it.
+echo "▸ Re-signing without get-task-allow (hardened runtime)…"
+codesign --force --options runtime --timestamp --sign "$SIGN_ID" "$APP"
+
 echo "▸ Verifying app signature…"
 codesign --verify --strict --verbose=2 "$APP"
+codesign -d --entitlements - "$APP" 2>/dev/null | grep -q "get-task-allow" \
+  && { echo "✗ get-task-allow still present"; exit 1; } || echo "  ok: no get-task-allow"
 
 echo "▸ Packaging .dmg…"
 cp -R "$APP" "$STAGE/"
