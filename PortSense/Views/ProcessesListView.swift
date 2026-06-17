@@ -24,17 +24,19 @@ struct ProcessesListView: View {
                            subtitle: search.isEmpty ? nil : "Try a different search term.")
         } else {
             ScrollView {
-                LazyVStack(spacing: 0) {
+                LazyVStack(spacing: 2) {
                     ForEach(filtered) { proc in
                         ProcessRow(proc: proc, hovered: hoveredPID == proc.pid, onKill: onKill)
                             .onHover { inside in
                                 if inside { hoveredPID = proc.pid }
                                 else if hoveredPID == proc.pid { hoveredPID = nil }
                             }
-                        Divider().padding(.leading, 12)
                     }
                 }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 6)
             }
+            .scrollContentBackground(.hidden)
         }
     }
 }
@@ -45,50 +47,49 @@ private struct ProcessRow: View {
     let onKill: (KillTarget) -> Void
 
     var body: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 10) {
             Text(proc.name)
                 .font(.body.weight(.medium))
+                .foregroundStyle(.primary)
                 .lineLimit(1)
-                .frame(maxWidth: 110, alignment: .leading)
+                .frame(maxWidth: 120, alignment: .leading)
 
             if proc.summary.lowercased() != proc.name.lowercased() {
                 Text(proc.summary)
-                    .font(.subheadline)
+                    .font(.callout)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
                     .truncationMode(.tail)
             }
 
-            Spacer(minLength: 4)
+            Spacer(minLength: 8)
 
             if hovered {
-                Button {
+                RowActionButton(systemName: "trash", help: "Kill process", tint: .red) {
                     onKill(KillTarget(pid: proc.pid, name: proc.name,
                                       command: proc.command, summary: proc.summary, port: nil))
-                } label: {
-                    Image(systemName: "trash").foregroundStyle(.red)
                 }
-                .buttonStyle(.borderless)
-                .help("Kill process")
             } else {
                 HStack(spacing: 10) {
                     Label("\(Int(proc.memoryMB)) MB", systemImage: "memorychip")
-                        .font(.subheadline)
+                        .font(.callout)
                         .foregroundStyle(.secondary)
-                        .help("Memory (RAM) in use")
                     if proc.cpu > 1 {
-                        Label(String(format: "%.1f%%", proc.cpu), systemImage: "cpu")
-                            .font(.subheadline)
+                        Label(String(format: "%.0f%%", proc.cpu), systemImage: "cpu")
+                            .font(.callout)
                             .foregroundStyle(.secondary)
-                            .help("CPU usage")
                     }
                 }
+                .labelStyle(.titleAndIcon)
                 .monospacedDigit()
             }
         }
-        .padding(.horizontal, 12)
-        .frame(height: 40)
+        .padding(.horizontal, 10)
+        .frame(height: 34)
+        .background(
+            RoundedRectangle(cornerRadius: 7, style: .continuous)
+                .fill(hovered ? Color.primary.opacity(0.08) : .clear)
+        )
         .contentShape(Rectangle())
-        .background(hovered ? Color.primary.opacity(0.06) : Color.clear)
     }
 }

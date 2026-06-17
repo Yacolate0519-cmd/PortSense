@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F8B0BC981041F413CCB9C92 /* PortScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA459F8EECDB7850A7CF99C /* PortScanner.swift */; };
+		42414EB9B16EF0C8F8EDE2BB /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529A04A4371836F0AB5D2CF4 /* VisualEffectView.swift */; };
 		47912A562044497C88A321CA /* Attribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB838EED5BD197139820585 /* Attribution.swift */; };
 		50E4E82603975FD15686DFE8 /* ProcessesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD4510A3308B2A282940CC /* ProcessesListView.swift */; };
 		8E65BF8FB824AFA1F3A33B33 /* ProcessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614B80841EEF8FF885EECB9 /* ProcessController.swift */; };
@@ -28,6 +29,7 @@
 		228BE4B3A255134D27707FEC /* PortSense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PortSense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30A49537AB65240F7D1C6101 /* CommandRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandRunner.swift; sourceTree = "<group>"; };
 		4BA459F8EECDB7850A7CF99C /* PortScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortScanner.swift; sourceTree = "<group>"; };
+		529A04A4371836F0AB5D2CF4 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		5FB838EED5BD197139820585 /* Attribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribution.swift; sourceTree = "<group>"; };
 		82E7F5A64C836C67B9B2B150 /* PortsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortsListView.swift; sourceTree = "<group>"; };
 		8614B80841EEF8FF885EECB9 /* ProcessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessController.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 				F9A43D99BAAD29E3AE2B0A2F /* EmptyStateView.swift */,
 				82E7F5A64C836C67B9B2B150 /* PortsListView.swift */,
 				21CD4510A3308B2A282940CC /* ProcessesListView.swift */,
+				529A04A4371836F0AB5D2CF4 /* VisualEffectView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				E2141D0A03DF81B6647E02ED /* ProcessScanner.swift in Sources */,
 				50E4E82603975FD15686DFE8 /* ProcessesListView.swift in Sources */,
 				E11F268C259630AEF1222444 /* ScannerStore.swift in Sources */,
+				42414EB9B16EF0C8F8EDE2BB /* VisualEffectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

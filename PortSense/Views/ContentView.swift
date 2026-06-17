@@ -32,14 +32,14 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 0) {
             header
-            Divider()
-            picker
-            Divider()
+            tabBar
+            Divider().opacity(0.5)
             content
-            Divider()
+            Divider().opacity(0.5)
             footer
         }
         .frame(width: 380, height: 540)
+        .background(VisualEffectView(material: .popover))
         .task { await store.run() }
         .onReceive(ticker) { now = $0 }
         .onChange(of: tab) { _ in search = "" }
@@ -73,12 +73,15 @@ struct ContentView: View {
     // MARK: - Sections
 
     private var header: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 6) {
             Text("Port Sense")
                 .font(.headline)
+                .foregroundStyle(.primary)
             Spacer()
             Button { Task { await store.refresh() } } label: {
                 Image(systemName: "arrow.clockwise")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(.secondary)
             }
             .buttonStyle(.borderless)
             .help("Refresh")
@@ -87,29 +90,33 @@ struct ContentView: View {
                 Button("Quit Port Sense") { NSApplication.shared.terminate(nil) }
             } label: {
                 Image(systemName: "ellipsis.circle")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(.secondary)
             }
             .menuStyle(.borderlessButton)
             .menuIndicator(.hidden)
             .fixedSize()
         }
-        .padding(.horizontal, 12)
-        .frame(height: 38)
+        .padding(.horizontal, 16)
+        .padding(.top, 12)
+        .padding(.bottom, 8)
     }
 
-    private var picker: some View {
+    private var tabBar: some View {
         Picker("", selection: $tab) {
             ForEach(Tab.allCases, id: \.self) { Text($0.rawValue).tag($0) }
         }
         .pickerStyle(.segmented)
         .labelsHidden()
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
+        .padding(.horizontal, 16)
+        .padding(.bottom, 10)
     }
 
     @ViewBuilder
     private var content: some View {
         if store.isLoading {
             ProgressView()
+                .controlSize(.small)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
             switch tab {
@@ -126,19 +133,19 @@ struct ContentView: View {
             if let updated = store.lastUpdated {
                 Text("Updated \(relativeTime(updated))")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.tertiary)
                     .monospacedDigit()
             }
             Spacer()
             if tab == .processes {
-                TextField("Search…", text: $search)
+                TextField("Search", text: $search)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 130)
                     .controlSize(.small)
             }
         }
-        .padding(.horizontal, 12)
-        .frame(height: 32)
+        .padding(.horizontal, 16)
+        .frame(height: 36)
     }
 
     // MARK: - Kill flow
@@ -167,7 +174,7 @@ struct ContentView: View {
 
     // MARK: - Helpers
 
-    /// Bridges an optional `Identifiable` into the `isPresented` Bool an alert needs.
+    /// Bridges an optional into the `isPresented` Bool an alert needs.
     private func bool<T>(_ binding: Binding<T?>) -> Binding<Bool> {
         Binding(get: { binding.wrappedValue != nil },
                 set: { if !$0 { binding.wrappedValue = nil } })
