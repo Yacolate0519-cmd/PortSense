@@ -88,16 +88,15 @@ struct ContentView: View {
             .buttonStyle(.borderless)
             .help("Refresh")
 
-            Menu {
-                Button("Quit Port Sense") { NSApplication.shared.terminate(nil) }
+            Button {
+                NSApplication.shared.terminate(nil)
             } label: {
-                Image(systemName: "ellipsis.circle")
+                Image(systemName: "power")
                     .font(.system(size: 13, weight: .medium))
                     .foregroundStyle(.secondary)
             }
-            .menuStyle(.borderlessButton)
-            .menuIndicator(.hidden)
-            .fixedSize()
+            .buttonStyle(.borderless)
+            .help("Quit Port Sense")
         }
         .padding(.horizontal, 16)
         .padding(.top, 12)
