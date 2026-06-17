@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B187C56A35D8CB86AC59D9E /* DockerScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92022D61C527EF543A7583D1 /* DockerScanner.swift */; };
 		1F8B0BC981041F413CCB9C92 /* PortScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA459F8EECDB7850A7CF99C /* PortScanner.swift */; };
+		222B0B320BD5A4BB7D375802 /* DockerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD9C233D233F2204E81C735 /* DockerListView.swift */; };
 		42414EB9B16EF0C8F8EDE2BB /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529A04A4371836F0AB5D2CF4 /* VisualEffectView.swift */; };
 		47912A562044497C88A321CA /* Attribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB838EED5BD197139820585 /* Attribution.swift */; };
 		50E4E82603975FD15686DFE8 /* ProcessesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD4510A3308B2A282940CC /* ProcessesListView.swift */; };
@@ -34,6 +36,8 @@
 		82E7F5A64C836C67B9B2B150 /* PortsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortsListView.swift; sourceTree = "<group>"; };
 		8614B80841EEF8FF885EECB9 /* ProcessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessController.swift; sourceTree = "<group>"; };
 		8FFFA358DFF58D87BE33BEB2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		92022D61C527EF543A7583D1 /* DockerScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerScanner.swift; sourceTree = "<group>"; };
+		9CD9C233D233F2204E81C735 /* DockerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerListView.swift; sourceTree = "<group>"; };
 		C09868A17E35D513175338E0 /* ScannerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerStore.swift; sourceTree = "<group>"; };
 		E0FF0BCABF01E017009FF27D /* PortSenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortSenseApp.swift; sourceTree = "<group>"; };
 		F9A43D99BAAD29E3AE2B0A2F /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
@@ -52,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				8FFFA358DFF58D87BE33BEB2 /* ContentView.swift */,
+				9CD9C233D233F2204E81C735 /* DockerListView.swift */,
 				F9A43D99BAAD29E3AE2B0A2F /* EmptyStateView.swift */,
 				82E7F5A64C836C67B9B2B150 /* PortsListView.swift */,
 				21CD4510A3308B2A282940CC /* ProcessesListView.swift */,
@@ -65,6 +70,7 @@
 			children = (
 				5FB838EED5BD197139820585 /* Attribution.swift */,
 				30A49537AB65240F7D1C6101 /* CommandRunner.swift */,
+				92022D61C527EF543A7583D1 /* DockerScanner.swift */,
 				4BA459F8EECDB7850A7CF99C /* PortScanner.swift */,
 				8614B80841EEF8FF885EECB9 /* ProcessController.swift */,
 				1428E65F96A3A27C508ED578 /* ProcessScanner.swift */,
@@ -162,6 +168,8 @@
 				47912A562044497C88A321CA /* Attribution.swift in Sources */,
 				9E0D05784EABD6E779960BAC /* CommandRunner.swift in Sources */,
 				EC536815DBF9616F4D7D9CC0 /* ContentView.swift in Sources */,
+				222B0B320BD5A4BB7D375802 /* DockerListView.swift in Sources */,
+				1B187C56A35D8CB86AC59D9E /* DockerScanner.swift in Sources */,
 				FC24C1F3D59439768F10A888 /* EmptyStateView.swift in Sources */,
 				D3650462045AB62E8CB4E02B /* Models.swift in Sources */,
 				1F8B0BC981041F413CCB9C92 /* PortScanner.swift in Sources */,

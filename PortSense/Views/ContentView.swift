@@ -4,6 +4,7 @@ import AppKit
 enum Tab: String, CaseIterable {
     case ports = "Ports"
     case processes = "Processes"
+    case docker = "Containers"
 }
 
 /// A process the user has asked to kill (drives the confirmation alerts).
@@ -124,6 +125,8 @@ struct ContentView: View {
                 PortsListView(ports: store.ports) { confirmTarget = $0 }
             case .processes:
                 ProcessesListView(processes: store.processes, search: search) { confirmTarget = $0 }
+            case .docker:
+                DockerListView(result: store.docker)
             }
         }
     }

@@ -76,6 +76,9 @@ enum Attribution {
         // Chromium
         if lower == "chromium" || lower == "chromium-browser" { return "Chromium browser" }
 
+        // QEMU — on a dev Mac this is almost always the Android emulator.
+        if lower.hasPrefix("qemu") { return attributeQemu(command) }
+
         // Default: strip path from name
         return name.split(separator: "/").last.map(String.init) ?? name
     }
@@ -269,6 +272,21 @@ enum Attribution {
     }
 
     // MARK: - Java
+
+    // MARK: - QEMU / Android emulator
+
+    /// On a dev Mac, QEMU is almost always the Android emulator (runs with an
+    /// `-avd <name>` argument, under .../Android/sdk/emulator/).
+    private static func attributeQemu(_ command: String) -> String {
+        let lower = command.lowercased()
+        if lower.contains("/android/") || lower.contains("-avd") {
+            if let avd = firstGroup("-avd\\s+(\\S+)", in: command) {
+                return "Android Emulator (\(avd))"
+            }
+            return "Android Emulator"
+        }
+        return "QEMU virtual machine"
+    }
 
     private static func attributeJava(_ command: String) -> String {
         let cmd = command.lowercased()

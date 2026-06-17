@@ -7,6 +7,7 @@ import SwiftUI
 final class ScannerStore: ObservableObject {
     @Published var ports: [PortInfo] = []
     @Published var processes: [DevProcess] = []
+    @Published var docker: DockerScanner.Result = .containers([])
     @Published var isLoading = true
     @Published var lastUpdated: Date?
 
@@ -24,15 +25,18 @@ final class ScannerStore: ObservableObject {
     }
 
     func refresh() async {
-        // Run both blocking scans concurrently off the main actor.
+        // Run the blocking scans concurrently off the main actor.
         let portsHandle = Task.detached(priority: .utility) { PortScanner.list() }
         let processesHandle = Task.detached(priority: .utility) { ProcessScanner.list() }
+        let dockerHandle = Task.detached(priority: .utility) { DockerScanner.scan() }
 
         let newPorts = await portsHandle.value
         let newProcesses = await processesHandle.value
+        let newDocker = await dockerHandle.value
 
         ports = newPorts.sorted { $0.port < $1.port }
         processes = newProcesses
+        docker = newDocker
         lastUpdated = Date()
         isLoading = false
     }
