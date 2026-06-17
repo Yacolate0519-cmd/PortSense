@@ -21,6 +21,7 @@ struct ContentView: View {
     @EnvironmentObject private var store: ScannerStore
     @State private var tab: Tab = .ports
     @State private var search = ""
+    @State private var processSort: ProcessSort = .memory
     @State private var now = Date()
 
     // Two-stage kill flow.
@@ -39,7 +40,7 @@ struct ContentView: View {
             Divider().opacity(0.5)
             footer
         }
-        .frame(width: 380, height: 540)
+        .frame(width: 460, height: 540)
         .background(VisualEffectView(material: .popover))
         .task { await store.run() }
         .onReceive(ticker) { now = $0 }
@@ -124,7 +125,7 @@ struct ContentView: View {
             case .ports:
                 PortsListView(ports: store.ports) { confirmTarget = $0 }
             case .processes:
-                ProcessesListView(processes: store.processes, search: search) { confirmTarget = $0 }
+                ProcessesListView(processes: store.processes, search: search, sort: processSort) { confirmTarget = $0 }
             case .docker:
                 DockerListView(result: store.docker)
             }
@@ -141,9 +142,20 @@ struct ContentView: View {
             }
             Spacer()
             if tab == .processes {
+                Button {
+                    processSort = (processSort == .memory) ? .cpu : .memory
+                } label: {
+                    Label(processSort == .memory ? "Sort by RAM" : "Sort by CPU",
+                          systemImage: processSort == .memory ? "memorychip" : "cpu")
+                        .font(.caption)
+                        .labelStyle(.titleAndIcon)
+                }
+                .buttonStyle(.borderless)
+                .help("Sorting by \(processSort == .memory ? "memory" : "CPU") — click to switch")
+
                 TextField("Search", text: $search)
                     .textFieldStyle(.roundedBorder)
-                    .frame(width: 130)
+                    .frame(width: 120)
                     .controlSize(.small)
             }
         }

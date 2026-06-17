@@ -98,7 +98,8 @@ enum ProcessScanner {
             guard isDevProcess(name: e.name, rssKB: e.rssKB, cpuPct: e.cpu) else { continue }
             let parentName = pidToName[e.ppid]
             let summary = Attribution.summarize(
-                AttributionInput(name: e.name, command: e.command, cwd: nil, parentName: parentName)
+                AttributionInput(name: e.name, command: e.command, cwd: nil, parentName: parentName),
+                pid: e.pid
             )
             let memoryMB = (Double(e.rssKB) / 1024 * 10).rounded() / 10
             result.append(DevProcess(

@@ -1,20 +1,30 @@
 import SwiftUI
 
+/// How the Processes list is ordered.
+enum ProcessSort {
+    case memory
+    case cpu
+}
+
 struct ProcessesListView: View {
     let processes: [DevProcess]
     let search: String
+    let sort: ProcessSort
     let onKill: (KillTarget) -> Void
 
     @State private var hoveredPID: Int?
 
     private var filtered: [DevProcess] {
         let q = search.lowercased()
-        guard !q.isEmpty else { return processes }
-        return processes.filter {
+        let matched = q.isEmpty ? processes : processes.filter {
             String($0.pid).contains(q) ||
             $0.name.lowercased().contains(q) ||
             $0.command.lowercased().contains(q) ||
             $0.summary.lowercased().contains(q)
+        }
+        switch sort {
+        case .memory: return matched.sorted { $0.memoryMB > $1.memoryMB }
+        case .cpu:    return matched.sorted { $0.cpu > $1.cpu }
         }
     }
 
@@ -46,43 +56,51 @@ private struct ProcessRow: View {
     let hovered: Bool
     let onKill: (KillTarget) -> Void
 
+    private var showsSummary: Bool {
+        !proc.summary.isEmpty && proc.summary.lowercased() != proc.name.lowercased()
+    }
+
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 8) {
+            // Left — process name (left-aligned)
             Text(proc.name)
                 .font(.body.weight(.medium))
                 .foregroundStyle(.primary)
                 .lineLimit(1)
-                .frame(maxWidth: 120, alignment: .leading)
+                .truncationMode(.tail)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
-            if proc.summary.lowercased() != proc.name.lowercased() {
-                Text(proc.summary)
-                    .font(.callout)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
-                    .truncationMode(.tail)
-            }
+            // Middle — app description (centered); blank when same as the name
+            Text(showsSummary ? proc.summary : "")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .truncationMode(.tail)
+                .frame(maxWidth: .infinity, alignment: .center)
 
-            Spacer(minLength: 8)
-
-            if hovered {
-                RowActionButton(systemName: "trash", help: "Kill process", tint: .red) {
-                    onKill(KillTarget(pid: proc.pid, name: proc.name,
-                                      command: proc.command, summary: proc.summary, port: nil))
-                }
-            } else {
-                HStack(spacing: 10) {
-                    Label("\(Int(proc.memoryMB)) MB", systemImage: "memorychip")
-                        .font(.callout)
-                        .foregroundStyle(.secondary)
-                    if proc.cpu > 1 {
-                        Label(String(format: "%.0f%%", proc.cpu), systemImage: "cpu")
-                            .font(.callout)
-                            .foregroundStyle(.secondary)
+            // Right — memory/CPU (never wraps), or kill on hover (right-aligned)
+            Group {
+                if hovered {
+                    RowActionButton(systemName: "trash", help: "Kill process", tint: .red) {
+                        onKill(KillTarget(pid: proc.pid, name: proc.name,
+                                          command: proc.command, summary: proc.summary, port: nil))
                     }
+                } else {
+                    HStack(spacing: 8) {
+                        Label("\(Int(proc.memoryMB)) MB", systemImage: "memorychip")
+                            .help("Memory (RAM) in use")
+                        Label(String(format: "%.0f%%", proc.cpu), systemImage: "cpu")
+                            .help("CPU usage")
+                    }
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .labelStyle(.titleAndIcon)
+                    .monospacedDigit()
+                    .lineLimit(1)
+                    .fixedSize()
                 }
-                .labelStyle(.titleAndIcon)
-                .monospacedDigit()
             }
+            .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .padding(.horizontal, 10)
         .frame(height: 34)

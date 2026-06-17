@@ -11,7 +11,17 @@ struct AttributionInput {
 /// Maps a raw process name + command + context to a human-readable label.
 /// Pure, side-effect-free logic (ported from the original `attribution.ts`).
 enum Attribution {
-    static func summarize(_ input: AttributionInput) -> String {
+    /// Human-readable summary, falling back to the GUI app name (via the OS) and
+    /// finally the raw process name when no specific rule matches.
+    static func summarize(_ input: AttributionInput, pid: Int? = nil) -> String {
+        if let known = knownSummary(input) { return known }
+        if let pid, let appName = AppResolver.appName(forPID: pid) { return appName }
+        return input.name.split(separator: "/").last.map(String.init) ?? input.name
+    }
+
+    /// Returns a summary only when a specific runtime/app rule matches; `nil`
+    /// for the generic case so the caller can resolve the owning app instead.
+    static func knownSummary(_ input: AttributionInput) -> String? {
         let name = input.name
         let command = input.command
         let cwd = input.cwd
@@ -79,8 +89,8 @@ enum Attribution {
         // QEMU — on a dev Mac this is almost always the Android emulator.
         if lower.hasPrefix("qemu") { return attributeQemu(command) }
 
-        // Default: strip path from name
-        return name.split(separator: "/").last.map(String.init) ?? name
+        // No specific rule — let the caller resolve the owning GUI app.
+        return nil
     }
 
     // MARK: - Path helpers

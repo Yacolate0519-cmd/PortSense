@@ -24,7 +24,8 @@ enum PortScanner {
             }()
             let processName = ProcessScanner.cleanProcessName(comm: rp.command, command: fullCommand)
             let summary = Attribution.summarize(
-                AttributionInput(name: processName, command: fullCommand, cwd: enrich?.cwd)
+                AttributionInput(name: processName, command: fullCommand, cwd: enrich?.cwd),
+                pid: rp.pid
             )
             return PortInfo(
                 port: rp.port,

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000CE394854C9D3724F1E111 /* AppResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4413F22F4A98DC765577584C /* AppResolver.swift */; };
 		1B187C56A35D8CB86AC59D9E /* DockerScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92022D61C527EF543A7583D1 /* DockerScanner.swift */; };
 		1F8B0BC981041F413CCB9C92 /* PortScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA459F8EECDB7850A7CF99C /* PortScanner.swift */; };
 		222B0B320BD5A4BB7D375802 /* DockerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD9C233D233F2204E81C735 /* DockerListView.swift */; };
@@ -15,6 +16,7 @@
 		50E4E82603975FD15686DFE8 /* ProcessesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD4510A3308B2A282940CC /* ProcessesListView.swift */; };
 		8E65BF8FB824AFA1F3A33B33 /* ProcessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614B80841EEF8FF885EECB9 /* ProcessController.swift */; };
 		9E0D05784EABD6E779960BAC /* CommandRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A49537AB65240F7D1C6101 /* CommandRunner.swift */; };
+		A290AA8EF1E0E9E0C6D3DD83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2EACA8B9DBA51299FBC8E98 /* Assets.xcassets */; };
 		A49F13E9143E6D60226AD167 /* PortSenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FF0BCABF01E017009FF27D /* PortSenseApp.swift */; };
 		D3650462045AB62E8CB4E02B /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0337C0A74DE1DE281C85855C /* Models.swift */; };
 		E11F268C259630AEF1222444 /* ScannerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09868A17E35D513175338E0 /* ScannerStore.swift */; };
@@ -30,6 +32,7 @@
 		21CD4510A3308B2A282940CC /* ProcessesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessesListView.swift; sourceTree = "<group>"; };
 		228BE4B3A255134D27707FEC /* PortSense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PortSense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30A49537AB65240F7D1C6101 /* CommandRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandRunner.swift; sourceTree = "<group>"; };
+		4413F22F4A98DC765577584C /* AppResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppResolver.swift; sourceTree = "<group>"; };
 		4BA459F8EECDB7850A7CF99C /* PortScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortScanner.swift; sourceTree = "<group>"; };
 		529A04A4371836F0AB5D2CF4 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		5FB838EED5BD197139820585 /* Attribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribution.swift; sourceTree = "<group>"; };
@@ -39,6 +42,7 @@
 		92022D61C527EF543A7583D1 /* DockerScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerScanner.swift; sourceTree = "<group>"; };
 		9CD9C233D233F2204E81C735 /* DockerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerListView.swift; sourceTree = "<group>"; };
 		C09868A17E35D513175338E0 /* ScannerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerStore.swift; sourceTree = "<group>"; };
+		D2EACA8B9DBA51299FBC8E98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0FF0BCABF01E017009FF27D /* PortSenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortSenseApp.swift; sourceTree = "<group>"; };
 		F9A43D99BAAD29E3AE2B0A2F /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +72,7 @@
 		2DF0D00A3DECE022913C5957 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4413F22F4A98DC765577584C /* AppResolver.swift */,
 				5FB838EED5BD197139820585 /* Attribution.swift */,
 				30A49537AB65240F7D1C6101 /* CommandRunner.swift */,
 				92022D61C527EF543A7583D1 /* DockerScanner.swift */,
@@ -81,6 +86,7 @@
 		BE7D06D48DF2CB2BC226719D /* PortSense */ = {
 			isa = PBXGroup;
 			children = (
+				D2EACA8B9DBA51299FBC8E98 /* Assets.xcassets */,
 				0337C0A74DE1DE281C85855C /* Models.swift */,
 				E0FF0BCABF01E017009FF27D /* PortSenseApp.swift */,
 				2DF0D00A3DECE022913C5957 /* Services */,
@@ -114,6 +120,7 @@
 			buildConfigurationList = 66D3A83C076C75B77007E760 /* Build configuration list for PBXNativeTarget "PortSense" */;
 			buildPhases = (
 				4814A5BAD557788EE64A4E97 /* Sources */,
+				C8BE1085B00D07388545BF85 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -160,11 +167,23 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		C8BE1085B00D07388545BF85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A290AA8EF1E0E9E0C6D3DD83 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4814A5BAD557788EE64A4E97 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000CE394854C9D3724F1E111 /* AppResolver.swift in Sources */,
 				47912A562044497C88A321CA /* Attribution.swift in Sources */,
 				9E0D05784EABD6E779960BAC /* CommandRunner.swift in Sources */,
 				EC536815DBF9616F4D7D9CC0 /* ContentView.swift in Sources */,
@@ -189,7 +208,7 @@
 		1CB11B399E67031565A8B31B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -337,7 +356,7 @@
 		A2DCEE743293EDF9B457B39B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;

@@ -26,7 +26,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var hotKeyRef: EventHotKeyRef?
     private var eventHandlerRef: EventHandlerRef?
 
-    private static let panelSize = NSSize(width: 380, height: 540)
+    private static let panelSize = NSSize(width: 460, height: 540)
 
     private lazy var panel: NSWindow = {
         let window = NSWindow(
