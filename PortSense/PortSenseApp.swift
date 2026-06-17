@@ -69,6 +69,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         registerGlobalHotKey()
 
+        // Enable launch-at-login once, so the app starts at boot and can try to
+        // claim a menu-bar slot early (like cc-bar). User can toggle it off.
+        if !UserDefaults.standard.bool(forKey: "didSetupLoginItem") {
+            UserDefaults.standard.set(true, forKey: "didSetupLoginItem")
+            LoginItem.setEnabled(true)
+        }
+
         // Open once on launch so it's visible even when the menu bar is full.
         // Delayed so activation lands after the app finishes launching.
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in

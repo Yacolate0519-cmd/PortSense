@@ -14,6 +14,7 @@
 		42414EB9B16EF0C8F8EDE2BB /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529A04A4371836F0AB5D2CF4 /* VisualEffectView.swift */; };
 		47912A562044497C88A321CA /* Attribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB838EED5BD197139820585 /* Attribution.swift */; };
 		50E4E82603975FD15686DFE8 /* ProcessesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD4510A3308B2A282940CC /* ProcessesListView.swift */; };
+		6DB4F6598DFB2AAA233784ED /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D13FFD3F0CDCDE77D6B48C /* LoginItem.swift */; };
 		8E65BF8FB824AFA1F3A33B33 /* ProcessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614B80841EEF8FF885EECB9 /* ProcessController.swift */; };
 		9E0D05784EABD6E779960BAC /* CommandRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A49537AB65240F7D1C6101 /* CommandRunner.swift */; };
 		A290AA8EF1E0E9E0C6D3DD83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2EACA8B9DBA51299FBC8E98 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		228BE4B3A255134D27707FEC /* PortSense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PortSense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30A49537AB65240F7D1C6101 /* CommandRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandRunner.swift; sourceTree = "<group>"; };
 		4413F22F4A98DC765577584C /* AppResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppResolver.swift; sourceTree = "<group>"; };
+		45D13FFD3F0CDCDE77D6B48C /* LoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItem.swift; sourceTree = "<group>"; };
 		4BA459F8EECDB7850A7CF99C /* PortScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortScanner.swift; sourceTree = "<group>"; };
 		529A04A4371836F0AB5D2CF4 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		5FB838EED5BD197139820585 /* Attribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribution.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				5FB838EED5BD197139820585 /* Attribution.swift */,
 				30A49537AB65240F7D1C6101 /* CommandRunner.swift */,
 				92022D61C527EF543A7583D1 /* DockerScanner.swift */,
+				45D13FFD3F0CDCDE77D6B48C /* LoginItem.swift */,
 				4BA459F8EECDB7850A7CF99C /* PortScanner.swift */,
 				8614B80841EEF8FF885EECB9 /* ProcessController.swift */,
 				1428E65F96A3A27C508ED578 /* ProcessScanner.swift */,
@@ -190,6 +193,7 @@
 				222B0B320BD5A4BB7D375802 /* DockerListView.swift in Sources */,
 				1B187C56A35D8CB86AC59D9E /* DockerScanner.swift in Sources */,
 				FC24C1F3D59439768F10A888 /* EmptyStateView.swift in Sources */,
+				6DB4F6598DFB2AAA233784ED /* LoginItem.swift in Sources */,
 				D3650462045AB62E8CB4E02B /* Models.swift in Sources */,
 				1F8B0BC981041F413CCB9C92 /* PortScanner.swift in Sources */,
 				A49F13E9143E6D60226AD167 /* PortSenseApp.swift in Sources */,

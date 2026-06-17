@@ -88,6 +88,21 @@ struct ContentView: View {
             .buttonStyle(.borderless)
             .help("Refresh")
 
+            Menu {
+                Toggle("Launch at Login", isOn: Binding(
+                    get: { LoginItem.isEnabled },
+                    set: { LoginItem.setEnabled($0) }
+                ))
+            } label: {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(.secondary)
+            }
+            .menuStyle(.borderlessButton)
+            .menuIndicator(.hidden)
+            .fixedSize()
+            .help("Settings")
+
             Button {
                 NSApplication.shared.terminate(nil)
             } label: {
