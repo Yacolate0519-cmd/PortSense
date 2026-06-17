@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Xcode user-specific & build artifacts
+xcuserdata/
+*.xcuserstate
+DerivedData/
+build/
+.build/
+
+# Swift Package Manager
+.swiftpm/
+
+# The .xcodeproj is generated from project.yml via XcodeGen.
+# It is committed for convenience (clone & open), but project.yml is the
+# source of truth. Uncomment the next line if you prefer to regenerate it.
+# PortSense.xcodeproj/
