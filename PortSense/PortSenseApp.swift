@@ -26,9 +26,9 @@ final class UpdaterViewModel: ObservableObject {
     @Published var canCheckForUpdates = false
     private let updater: SPUUpdater
 
-    init(_ controller: SPUStandardUpdaterController) {
-        updater = controller.updater
-        controller.updater.publisher(for: \.canCheckForUpdates)
+    init(_ updater: SPUUpdater) {
+        self.updater = updater
+        updater.publisher(for: \.canCheckForUpdates)
             .assign(to: &$canCheckForUpdates)
     }
 
@@ -40,12 +40,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem!
     private let store = ScannerStore()
 
-    // Sparkle: background checks (driven by Info.plist) pop the update prompt on
-    // old versions; the gear menu offers a manual check via UpdaterViewModel.
-    private let updaterController = SPUStandardUpdaterController(
-        startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil
-    )
-    private lazy var updaterModel = UpdaterViewModel(updaterController)
+    // Sparkle with our custom UI (SparkleUserDriver): background checks pop the
+    // custom update window on old versions; the gear menu does a manual check.
+    private let userDriver = SparkleUserDriver()
+    private lazy var updater: SPUUpdater = {
+        let updater = SPUUpdater(hostBundle: .main, applicationBundle: .main,
+                                 userDriver: userDriver, delegate: nil)
+        do { try updater.start() }
+        catch { NSLog("[Sparkle] startUpdater failed: \(error.localizedDescription)") }
+        return updater
+    }()
+    private lazy var updaterModel = UpdaterViewModel(updater)
 
     private var hotKeyRef: EventHotKeyRef?
     private var eventHandlerRef: EventHandlerRef?
@@ -97,6 +102,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         registerGlobalHotKey()
+        _ = updater   // start Sparkle now so background update checks schedule
 
         // Enable launch-at-login once, so the app starts at boot and can try to
         // claim a menu-bar slot early (like cc-bar). User can toggle it off.
