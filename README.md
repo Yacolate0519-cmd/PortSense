@@ -1,10 +1,6 @@
 <div align="center">
 
-<img src="docs/icon.png" width="128" alt="Port Sense">
-
-# Port Sense
-
-**Know exactly what's using your Mac's ports — at a glance.**
+<img src="docs/banner.png" alt="Port Sense" width="100%">
 
 一眼看懂你的 Mac 上哪個 App 正在用哪個埠。
 
