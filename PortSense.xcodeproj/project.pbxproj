@@ -16,6 +16,7 @@
 		50E4E82603975FD15686DFE8 /* ProcessesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD4510A3308B2A282940CC /* ProcessesListView.swift */; };
 		6DB4F6598DFB2AAA233784ED /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D13FFD3F0CDCDE77D6B48C /* LoginItem.swift */; };
 		70E96D12742F71BF871F90FD /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = B78C282D304750A3B78B88F1 /* Sparkle */; };
+		7F9BE0CE1B6D42234894754F /* UpdateAvailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2239AB14693AFD7F7796666 /* UpdateAvailableView.swift */; };
 		8E65BF8FB824AFA1F3A33B33 /* ProcessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614B80841EEF8FF885EECB9 /* ProcessController.swift */; };
 		9E0D05784EABD6E779960BAC /* CommandRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A49537AB65240F7D1C6101 /* CommandRunner.swift */; };
 		A290AA8EF1E0E9E0C6D3DD83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2EACA8B9DBA51299FBC8E98 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		92022D61C527EF543A7583D1 /* DockerScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerScanner.swift; sourceTree = "<group>"; };
 		9CD9C233D233F2204E81C735 /* DockerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerListView.swift; sourceTree = "<group>"; };
 		C09868A17E35D513175338E0 /* ScannerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerStore.swift; sourceTree = "<group>"; };
+		C2239AB14693AFD7F7796666 /* UpdateAvailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAvailableView.swift; sourceTree = "<group>"; };
 		D2EACA8B9DBA51299FBC8E98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0FF0BCABF01E017009FF27D /* PortSenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortSenseApp.swift; sourceTree = "<group>"; };
 		F9A43D99BAAD29E3AE2B0A2F /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				F9A43D99BAAD29E3AE2B0A2F /* EmptyStateView.swift */,
 				82E7F5A64C836C67B9B2B150 /* PortsListView.swift */,
 				21CD4510A3308B2A282940CC /* ProcessesListView.swift */,
+				C2239AB14693AFD7F7796666 /* UpdateAvailableView.swift */,
 				529A04A4371836F0AB5D2CF4 /* VisualEffectView.swift */,
 			);
 			path = Views;
@@ -219,6 +222,7 @@
 				E2141D0A03DF81B6647E02ED /* ProcessScanner.swift in Sources */,
 				50E4E82603975FD15686DFE8 /* ProcessesListView.swift in Sources */,
 				E11F268C259630AEF1222444 /* ScannerStore.swift in Sources */,
+				7F9BE0CE1B6D42234894754F /* UpdateAvailableView.swift in Sources */,
 				42414EB9B16EF0C8F8EDE2BB /* VisualEffectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
