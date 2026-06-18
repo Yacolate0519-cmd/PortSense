@@ -55,8 +55,10 @@ No more cryptic `lsof` output. Just the answer.
 - **⌨️ Always one shortcut away** — press **⌥⌘P** from anywhere to toggle the
   window open or closed — even over a full-screen app — or open it from the menu
   bar or the Dock.
-- **🔒 Private by design** — everything runs locally. No network, no accounts,
-  no tracking.
+- **🔄 Updates itself** — checks GitHub for new releases and installs them in
+  place (signature-verified), so you never re-download and drag again.
+- **🔒 Private by design** — your port and process data never leaves your Mac.
+  The only network call is the signed update check. No accounts, no tracking.
 
 ## 🎯 Who it's for
 
@@ -65,7 +67,7 @@ saves you the "what's on this port / why won't this port free up" detective work
 
 ## 📦 Install
 
-1. Download **Port Sense.dmg** from the [latest release](https://github.com/Yacolate0519-cmd/PortSense/releases/latest).
+1. Download **PortSense.dmg** from the [latest release](https://github.com/Yacolate0519-cmd/PortSense/releases/latest).
 2. Open it and drag **Port Sense** into Applications.
 3. Launch it and press **⌥⌘P** (or click the icon in the menu bar).
 
@@ -81,6 +83,7 @@ saves you the "what's on this port / why won't this port free up" detective work
 | Open a port / kill a process | Hover a row → the buttons appear |
 | Start with your Mac | Gear menu → **Launch at Login** |
 | Reopen in the same spot | Gear menu → **Remember Window Position** |
+| Update to the latest version | Gear menu → **Check for Updates…** (also checks daily) |
 
 ## 🛠 Build from source
 
@@ -92,7 +95,8 @@ cd PortSense
 open PortSense.xcodeproj   # then press ⌘R
 ```
 
-Built natively in **Swift / SwiftUI** with no third-party dependencies.
+Built natively in **Swift / SwiftUI**. The only dependency is
+[Sparkle](https://sparkle-project.org), which powers in-app updates.
 
 ## License
 

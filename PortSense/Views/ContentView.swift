@@ -19,6 +19,7 @@ struct KillTarget: Identifiable {
 
 struct ContentView: View {
     @EnvironmentObject private var store: ScannerStore
+    @EnvironmentObject private var updater: UpdaterViewModel
     @State private var tab: Tab = .ports
     @State private var search = ""
     @State private var processSort: ProcessSort = .memory
@@ -95,6 +96,9 @@ struct ContentView: View {
                     set: { LoginItem.setEnabled($0) }
                 ))
                 Toggle("Remember Window Position", isOn: $rememberPosition)
+                Divider()
+                Button("Check for Updates…") { updater.checkForUpdates() }
+                    .disabled(!updater.canCheckForUpdates)
             } label: {
                 Image(systemName: "gearshape")
                     .font(.system(size: 13, weight: .medium))

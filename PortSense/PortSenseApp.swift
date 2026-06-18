@@ -1,6 +1,8 @@
 import SwiftUI
 import AppKit
 import Carbon.HIToolbox
+import Combine
+import Sparkle
 
 @main
 struct PortSenseApp: App {
@@ -18,10 +20,32 @@ struct PortSenseApp: App {
 /// Uses a real floating window (not `MenuBarExtra`/`NSPopover`, both of which
 /// failed to display on a notched Mac whose menu bar was full). A global hotkey
 /// (⌥⌘P) opens it regardless of whether the menu bar has room for the icon.
+/// Exposes Sparkle's updater to SwiftUI (the "Check for Updates…" menu item).
+@MainActor
+final class UpdaterViewModel: ObservableObject {
+    @Published var canCheckForUpdates = false
+    private let updater: SPUUpdater
+
+    init(_ controller: SPUStandardUpdaterController) {
+        updater = controller.updater
+        controller.updater.publisher(for: \.canCheckForUpdates)
+            .assign(to: &$canCheckForUpdates)
+    }
+
+    func checkForUpdates() { updater.checkForUpdates() }
+}
+
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem!
     private let store = ScannerStore()
+
+    // Sparkle: background checks (driven by Info.plist) pop the update prompt on
+    // old versions; the gear menu offers a manual check via UpdaterViewModel.
+    private let updaterController = SPUStandardUpdaterController(
+        startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil
+    )
+    private lazy var updaterModel = UpdaterViewModel(updaterController)
 
     private var hotKeyRef: EventHotKeyRef?
     private var eventHandlerRef: EventHandlerRef?
@@ -51,7 +75,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         window.standardWindowButton(.zoomButton)?.isHidden = true
         window.isReleasedWhenClosed = false
         window.contentViewController = NSHostingController(
-            rootView: ContentView().environmentObject(store)
+            rootView: ContentView()
+                .environmentObject(store)
+                .environmentObject(updaterModel)
         )
         return window
     }()

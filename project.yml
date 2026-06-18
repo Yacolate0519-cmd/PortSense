@@ -5,6 +5,11 @@ options:
     macOS: "13.0"
   createIntermediateGroups: true
 
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: "2.0.0"
+
 settings:
   base:
     MARKETING_VERSION: "1.0.0"
@@ -19,6 +24,8 @@ targets:
     type: application
     platform: macOS
     deploymentTarget: "13.0"
+    dependencies:
+      - package: Sparkle
     sources:
       - path: PortSense
         excludes:

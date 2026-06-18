@@ -28,5 +28,13 @@
 	<string>Copyright © 2026 yacolate0519. MIT License.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>https://github.com/Yacolate0519-cmd/PortSense/releases/latest/download/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>wfQISc9rzHhOurX9PGeR9ACWVuMj6PpSZRX7SQ3JQGw=</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUScheduledCheckInterval</key>
+	<integer>86400</integer>
 </dict>
 </plist>

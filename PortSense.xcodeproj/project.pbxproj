@@ -15,6 +15,7 @@
 		47912A562044497C88A321CA /* Attribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB838EED5BD197139820585 /* Attribution.swift */; };
 		50E4E82603975FD15686DFE8 /* ProcessesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD4510A3308B2A282940CC /* ProcessesListView.swift */; };
 		6DB4F6598DFB2AAA233784ED /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D13FFD3F0CDCDE77D6B48C /* LoginItem.swift */; };
+		70E96D12742F71BF871F90FD /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = B78C282D304750A3B78B88F1 /* Sparkle */; };
 		8E65BF8FB824AFA1F3A33B33 /* ProcessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614B80841EEF8FF885EECB9 /* ProcessController.swift */; };
 		9E0D05784EABD6E779960BAC /* CommandRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A49537AB65240F7D1C6101 /* CommandRunner.swift */; };
 		A290AA8EF1E0E9E0C6D3DD83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2EACA8B9DBA51299FBC8E98 /* Assets.xcassets */; };
@@ -48,6 +49,17 @@
 		E0FF0BCABF01E017009FF27D /* PortSenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortSenseApp.swift; sourceTree = "<group>"; };
 		F9A43D99BAAD29E3AE2B0A2F /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		513A1CA2C04F919726578D07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70E96D12742F71BF871F90FD /* Sparkle in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		0CA1CD2570889D3C88F81C44 /* Products */ = {
@@ -124,6 +136,7 @@
 			buildPhases = (
 				4814A5BAD557788EE64A4E97 /* Sources */,
 				C8BE1085B00D07388545BF85 /* Resources */,
+				513A1CA2C04F919726578D07 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,6 +144,7 @@
 			);
 			name = PortSense;
 			packageProductDependencies = (
+				B78C282D304750A3B78B88F1 /* Sparkle */,
 			);
 			productName = PortSense;
 			productReference = 228BE4B3A255134D27707FEC /* PortSense.app */;
@@ -160,6 +174,9 @@
 			);
 			mainGroup = D8ABCBCE96F464948C7797BC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				185B260E41756BD5797E122F /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0CA1CD2570889D3C88F81C44 /* Products */;
 			projectDirPath = "";
@@ -398,6 +415,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		185B260E41756BD5797E122F /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B78C282D304750A3B78B88F1 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 185B260E41756BD5797E122F /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1160F9CD7722242E29D3E941 /* Project object */;
 }
