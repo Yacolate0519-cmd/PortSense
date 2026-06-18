@@ -23,6 +23,7 @@ struct ContentView: View {
     @State private var search = ""
     @State private var processSort: ProcessSort = .memory
     @State private var now = Date()
+    @AppStorage("rememberWindowPosition") private var rememberPosition = false
 
     // Two-stage kill flow.
     @State private var confirmTarget: KillTarget?
@@ -93,6 +94,7 @@ struct ContentView: View {
                     get: { LoginItem.isEnabled },
                     set: { LoginItem.setEnabled($0) }
                 ))
+                Toggle("Remember Window Position", isOn: $rememberPosition)
             } label: {
                 Image(systemName: "gearshape")
                     .font(.system(size: 13, weight: .medium))

@@ -2,8 +2,6 @@
 
 <img src="docs/banner.png" alt="Port Sense" width="100%">
 
-一眼看懂你的 Mac 上哪個 App 正在用哪個埠。
-
 [![Download](https://img.shields.io/github/v/release/Yacolate0519-cmd/PortSense?label=Download%20.dmg&style=for-the-badge&logo=apple&color=2563eb)](https://github.com/Yacolate0519-cmd/PortSense/releases/latest)
 &nbsp;
 ![macOS 13+](https://img.shields.io/badge/macOS-13%2B-000000?style=for-the-badge&logo=apple&logoColor=white)
@@ -54,8 +52,9 @@ No more cryptic `lsof` output. Just the answer.
   ports they expose.
 - **⚡ Fix it in one click** — open a port in your browser, or kill a stuck
   process (it asks before force-quitting).
-- **⌨️ Always one shortcut away** — open it with **⌥⌘P** from anywhere, from the
-  menu bar, or from the Dock.
+- **⌨️ Always one shortcut away** — press **⌥⌘P** from anywhere to toggle the
+  window open or closed — even over a full-screen app — or open it from the menu
+  bar or the Dock.
 - **🔒 Private by design** — everything runs locally. No network, no accounts,
   no tracking.
 
@@ -81,6 +80,7 @@ saves you the "what's on this port / why won't this port free up" detective work
 | Open it | Click the menu bar or Dock icon |
 | Open a port / kill a process | Hover a row → the buttons appear |
 | Start with your Mac | Gear menu → **Launch at Login** |
+| Reopen in the same spot | Gear menu → **Remember Window Position** |
 
 ## 🛠 Build from source
 
@@ -94,6 +94,6 @@ open PortSense.xcodeproj   # then press ⌘R
 
 Built natively in **Swift / SwiftUI** with no third-party dependencies.
 
-## 📄 License
+## License
 
 [MIT](./LICENSE)

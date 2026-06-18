@@ -28,10 +28,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private static let panelSize = NSSize(width: 460, height: 540)
 
-    private lazy var panel: NSWindow = {
-        let window = NSWindow(
+    private lazy var panel: NSPanel = {
+        // Non-activating panel so showing/clicking it never pulls the user out of
+        // another app's full-screen Space — that's what lets it overlay full screen.
+        let window = NSPanel(
             contentRect: NSRect(origin: .zero, size: Self.panelSize),
-            styleMask: [.titled, .closable, .fullSizeContentView],
+            styleMask: [.titled, .closable, .fullSizeContentView, .nonactivatingPanel],
             backing: .buffered, defer: false
         )
         window.titleVisibility = .hidden
@@ -41,6 +43,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         window.backgroundColor = .clear          // let the Liquid Glass material show through
         window.hasShadow = true
         window.level = .floating
+        window.hidesOnDeactivate = false         // we never activate the app, so don't vanish
         window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
         // No traffic lights — dismiss like a popover (click away or ⌥⌘P).
         window.standardWindowButton(.closeButton)?.isHidden = true
@@ -94,10 +97,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         false
     }
 
+    func applicationWillTerminate(_ notification: Notification) {
+        saveOriginIfRemembering()
+    }
+
     // MARK: - Panel
 
     @objc func togglePanel(_ sender: Any?) {
         if panel.isVisible {
+            saveOriginIfRemembering()
             panel.orderOut(nil)
         } else {
             showPanel()
@@ -105,9 +113,32 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func showPanel() {
-        positionPanel()
-        NSApp.activate(ignoringOtherApps: true)
-        panel.makeKeyAndOrderFront(nil)
+        // "Remember Window Position" on + a saved spot → reopen there; otherwise
+        // fall back to the usual under-the-icon / top-right placement.
+        if rememberPosition, let origin = savedOrigin {
+            panel.setFrameOrigin(origin)
+        } else {
+            positionPanel()
+        }
+        // orderFrontRegardless (not NSApp.activate) keeps us in the current Space,
+        // so the panel floats over full-screen apps instead of switching away.
+        panel.orderFrontRegardless()
+    }
+
+    // MARK: - Remembered position (UserDefaults, shared with the Settings toggle)
+
+    private var rememberPosition: Bool {
+        UserDefaults.standard.bool(forKey: "rememberWindowPosition")
+    }
+
+    private var savedOrigin: NSPoint? {
+        guard let s = UserDefaults.standard.string(forKey: "windowOrigin") else { return nil }
+        return NSPointFromString(s)
+    }
+
+    private func saveOriginIfRemembering() {
+        guard rememberPosition else { return }
+        UserDefaults.standard.set(NSStringFromPoint(panel.frame.origin), forKey: "windowOrigin")
     }
 
     /// Place the panel under the menu bar icon if it's visible, otherwise pin it
