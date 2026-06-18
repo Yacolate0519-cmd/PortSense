@@ -65,6 +65,7 @@ struct UpdateAvailableView: View {
         }
         .padding(20)
         .frame(width: 460)
+        .animation(.smooth, value: model.phase)   // animate available → downloading → installing
     }
 
     @ViewBuilder private var footer: some View {
@@ -95,8 +96,8 @@ struct UpdateAvailableView: View {
     }
 }
 
-#Preview {
-    UpdateAvailableView(model: UpdatePromptModel(
+@MainActor private func sampleModel() -> UpdatePromptModel {
+    UpdatePromptModel(
         appName: "Port Sense",
         currentVersion: "1.0.0",
         newVersion: "1.1.0",
@@ -106,5 +107,39 @@ struct UpdateAvailableView: View {
         • Self-updating via Sparkle
         • Hello This is Test Version
         """
-    ))
+    )
+}
+
+// Static look — design the "update available" state.
+#Preview("Available") {
+    UpdateAvailableView(model: sampleModel())
+}
+
+// Interactive — click the buttons to see the *real* behavior:
+// Install animates download → install; Skip / Remind just dismiss (no download).
+#Preview("Interactive") {
+    InteractiveUpdatePreview()
+}
+
+private struct InteractiveUpdatePreview: View {
+    @StateObject private var model = sampleModel()
+
+    var body: some View {
+        UpdateAvailableView(model: model)
+            .onAppear {
+                model.onInstall = {
+                    Task {
+                        for step in 0...20 {
+                            model.phase = .downloading(fraction: Double(step) / 20)
+                            try? await Task.sleep(for: .milliseconds(100))
+                        }
+                        model.phase = .installing
+                    }
+                }
+                // Skip / Remind never download. In the real app they close the
+                // window; here they just reset to the prompt so you can retry.
+                model.onRemindLater = { model.phase = .available }
+                model.onSkip = { model.phase = .available }
+            }
+    }
 }
