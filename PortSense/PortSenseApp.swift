@@ -102,6 +102,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         registerGlobalHotKey()
+        registerClickOutsideToHide()
         _ = updater   // start Sparkle now so background update checks schedule
 
         // Enable launch-at-login once, so the app starts at boot and can try to
@@ -200,6 +201,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let screenRect = window.convertToScreen(button.convert(button.bounds, to: nil))
         let inMenuBarBand = screenRect.minY > screen.frame.maxY - 40
         return screenRect.minX > 1 && screenRect.maxX <= screen.frame.maxX && inMenuBarBand
+    }
+
+    // MARK: - Click-outside-to-hide
+
+    /// Dismiss the panel like a popover when the user clicks in another app.
+    /// Global monitors only fire for events headed to *other* apps, so clicks
+    /// inside our own panel (or its status-bar icon) don't trip this.
+    private func registerClickOutsideToHide() {
+        NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] _ in
+            guard let self, self.panel.isVisible else { return }
+            self.saveOriginIfRemembering()
+            self.panel.orderOut(nil)
+        }
+        // ponytail: monitor lives for the app's lifetime; no removal needed.
     }
 
     // MARK: - Global hotkey (⌥⌘P)
