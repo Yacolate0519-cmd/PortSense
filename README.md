@@ -54,7 +54,7 @@ No more cryptic `lsof` output. Just the answer.
   process (it asks before force-quitting).
 - **⌨️ Always one shortcut away** — press **⌥⌘P** from anywhere to toggle the
   window open or closed — even over a full-screen app — or open it from the menu
-  bar or the Dock.
+  bar or the Dock. Click anywhere outside it to dismiss it, just like a popover.
 - **🔄 Updates itself** — checks GitHub for new releases and installs them in
   place (signature-verified), so you never re-download and drag again.
 - **🔒 Private by design** — your port and process data never leaves your Mac.
@@ -80,6 +80,7 @@ saves you the "what's on this port / why won't this port free up" detective work
 |--------|-----|
 | Show / hide the window | **⌥⌘P** from anywhere |
 | Open it | Click the menu bar or Dock icon |
+| Dismiss it | Click anywhere outside the window (or **⌥⌘P**) |
 | Open a port / kill a process | Hover a row → the buttons appear |
 | Start with your Mac | Gear menu → **Launch at Login** |
 | Reopen in the same spot | Gear menu → **Remember Window Position** |
