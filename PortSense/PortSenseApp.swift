@@ -92,6 +92,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.regular)
 
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        // Force-show every launch: macOS can restore a stale "hidden" state for a
+        // background app's status item (e.g. after it was once dragged off the bar),
+        // parking the icon off-screen even when there's room. Overriding it here
+        // guarantees the icon always returns. ponytail: app must stay reachable.
+        statusItem.isVisible = true
         if let button = statusItem.button {
             let image = NSImage(systemSymbolName: "list.number", accessibilityDescription: "Port Sense")
             image?.isTemplate = true
